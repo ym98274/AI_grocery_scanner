@@ -12,12 +12,12 @@ in developing a complete AI grocery scanning system are encouraged to use the mo
 
 ## How the system was developed
 
-1. Data generation
+Data generation
    
 There are currently no publicly available grocery item datasets with sufficient depth and quality. Thus it was necessary to scrape the data from grocery stores
 in order to fine-tune and then evaluate the YOLOv8 model. This involved using web crawlers to identify and then download thousands of relevant image and text pairs. To assist with this, the BrightData api was integrated into the scraping code.  
 
-2. Data processing/preperation
+Data processing/preperation
 
 A number of preprocessing steps were implemented with respect to the scraped image/label pairs. 
 
@@ -33,12 +33,12 @@ Fine-tuning the YOLO agorithim requires that a purpose built dataset is generate
 To achieve this, the Common Objects in Context (coco) dataset was used. The processed grocery items were overlayed on randomly selected images from the coco
 dataset. As the grocery items were randomly overlayed, the coordinates of items were normalized and then stored.
    
-4. Model training/ evaluation
+Model training/ evaluation
 
 Using the ultralytics library a pre-trained YOLOv8 detector was loaded for fine-tuning. The model was then fine-tuned for 100 epochs
 and evaluated using metrics such Mean Average precision(MAP) and cls(class) loss. The MAP at the end of the training cycle reached 78%.
 
-6. Model integration
+Model integration
 
 It was then necessary to select and then integrate a seperate tracking system. Bytetrack was intitially tested due its ease of use through the
 Roboflow Supervision library. The Deepsort algorithim was eventually favoured as it is able to yeild strong results even where the YOLO objection detection
